@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COCO FLIX - Streaming Movies & TV Shows</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e50914;
+            --dark: #141414;
+            --light: #fff;
+            --gray: #333;
+            --gray-light: #999;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Bebas Neue', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(0,0,0,0.9);
+        }
+        
+        .logo {
+            font-size: 42px;
+            font-weight: bold;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(229, 9, 20, 0.7);
+            letter-spacing: 2px;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .logo span {
+            display: inline-block;
+            transform: rotateY(20deg);
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+            transition: transform 0.5s;
+        }
+        
+        .logo:hover span {
+            transform: rotateY(0);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 20px;
+            transition: 0.3s;
+            position: relative;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .language-selector {
+            position: relative;
+        }
+        
+        .language {
+            background-color: transparent;
+            color: var(--light);
+            border: 1px solid var(--light);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            appearance: none;
+            padding-right: 30px;
+            transition: all 0.3s;
+        }
+        
+        .language:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .language-selector:after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--light);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            margin-top: 100px;
+            padding: 20px 50px;
+        }
+        
+        /* Search Section */
+        .search-section {
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            background-color: rgba(51, 51, 51, 0.7);
+            border: 1px solid var(--gray);
+            border-radius: 30px;
+            color: var(--light);
+            font-size: 18px;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: rgba(51, 51, 51, 0.9);
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-light);
+        }
+        
+        /* Categories Section */
+        .category {
+            margin-bottom: 50px;
+        }
+        
+        .category-title {
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: var(--light);
+            position: relative;
+            display: inline-block;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .category-title:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            bottom: -10px;
+            left: 0;
+            background-color: var(--primary);
+        }
+        
+        .movies-row {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 30px;
+            scrollbar-width: none;
+        }
+        
+        .movies-row::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .movie-card {
+            min-width: 220px;
+            height: 330px;
+            background-color: var(--gray);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .movie-card:hover {
+            transform: scale(1.1) translateY(-10px) rotateY(10deg);
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(229, 9, 20, 0.3);
+        }
+        
+        .movie-poster {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .movie-card:hover .movie-poster {
+            transform: scale(1.05);
+        }
+        
+        .movie-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .movie-card:hover .movie-info {
+            transform: translateY(0);
+        }
+        
+        .movie-title {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: var(--light);
+        }
+        
+        .movie-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--gray-light);
+            margin-bottom: 10px;
+        }
+        
+        .movie-rating {
+            color: gold;
+        }
+        
+        .play-btn {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.7);
+        }
+        
+        /* Video Player */
+        .video-player {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .player-container {
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+        }
+        
+        .close-player {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        video {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            
+            .logo {
+                font-size: 32px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .main-content {
+                padding: 20px;
+                margin-top: 80px;
+            }
+            
+            .movie-card {
+                min-width: 180px;
+                height: 270px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo"><span>COCO</span> <span>FLIX</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Movies</a>
+            <a href="#">TV Shows</a>
+            <div class="language-selector">
+                <select class="language" id="language-select">
+                    <option value="en">English</option>
+                    <option value="fa">فارسی</option>
+                    <option value="de">Deutsch</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="ru">Русский</option>
+                </select>
+            </div>
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="search-section">
+            <input type="text" class="search-box" placeholder="Search movies, TV shows...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+        
+        <!-- Popular Movies -->
+        <div class="category">
+            <h2 class="category-title">Popular Movies</h2>
+            <div class="movies-row">
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/333/fff?text=Movie+1" class="movie-poster" alt="Movie 1">
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Last Adventure</h3>
+                        <div class="movie-meta">
+                            <span>2023</span>
+                            <span class="movie-rating">★ 8.5</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('movie1')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/333/fff?text=Movie+2" class="movie-poster" alt="Movie 2">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Midnight Run</h3>
+                        <div class="movie-meta">
+                            <span>2022</span>
+                            <span class="movie-rating">★ 7.9</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('movie2')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/333/fff?text=Movie+3" class="movie-poster" alt="Movie 3">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Space Odyssey</h3>
+                        <div class="movie-meta">
+                            <span>2023</span>
+                            <span class="movie-rating">★ 9.1</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('movie3')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/333/fff?text=Movie+4" class="movie-poster" alt="Movie 4">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Dark Secrets</h3>
+                        <div class="movie-meta">
+                            <span>2021</span>
+                            <span class="movie-rating">★ 8.2</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('movie4')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/333/fff?text=Movie+5" class="movie-poster" alt="Movie 5">
+                    <div class="movie-info">
+                        <h3 class="movie-title">City Lights</h3>
+                        <div class="movie-meta">
+                            <span>2023</span>
+                            <span class="movie-rating">★ 7.5</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('movie5')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MYSTERY MOVIE -->
+        <div class="category">
+            <h2 class="category-title">MYSTERY MOVIE</h2>
+            <div class="movies-row">
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/1a1a2e/fff?text=Mystery+1" class="movie-poster" alt="Mystery 1">
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Hidden Truth</h3>
+                        <div class="movie-meta">
+                            <span>2022</span>
+                            <span class="movie-rating">★ 8.7</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('mystery1')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/1a1a2e/fff?text=Mystery+2" class="movie-poster" alt="Mystery 2">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Vanished</h3>
+                        <div class="movie-meta">
+                            <span>2023</span>
+                            <span class="movie-rating">★ 8.1</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('mystery2')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/1a1a2e/fff?text=Mystery+3" class="movie-poster" alt="Mystery 3">
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Silent Witness</h3>
+                        <div class="movie-meta">
+                            <span>2021</span>
+                            <span class="movie-rating">★ 7.8</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('mystery3')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/1a1a2e/fff?text=Mystery+4" class="movie-poster" alt="Mystery 4">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Behind Closed Doors</h3>
+                        <div class="movie-meta">
+                            <span>2023</span>
+                            <span class="movie-rating">★ 8.4</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('mystery4')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ACTION MOVIE -->
+        <div class="category">
+            <h2 class="category-title">ACTION MOVIE</h2>
+            <div class="movies-row">
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/b21f1f/fff?text=Action+1" class="movie-poster" alt="Action 1">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Extreme Force</h3>
+                        <div class="movie-meta">
+                            <span>2023</span>
+                            <span class="movie-rating">★ 8.9</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('action1')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/b21f1f/fff?text=Action+2" class="movie-poster" alt="Action 2">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Rogue Agent</h3>
+                        <div class="movie-meta">
+                            <span>2022</span>
+                            <span class="movie-rating">★ 7.6</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('action2')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/b21f1f/fff?text=Action+3" class="movie-poster" alt="Action 3">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Final Strike</h3>
+                        <div class="movie-meta">
+                            <span>2023</span>
+                            <span class="movie-rating">★ 8.3</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('action3')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/b21f1f/fff?text=Action+4" class="movie-poster" alt="Action 4">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Urban Warfare</h3>
+                        <div class="movie-meta">
+                            <span>2021</span>
+                            <span class="movie-rating">★ 7.9</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('action4')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SCI-FI MOVIE -->
+        <div class="category">
+            <h2 class="category-title">SCI-FI MOVIE</h2>
+            <div class="movies-row">
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/0f3460/fff?text=SciFi+1" class="movie-poster" alt="Sci-Fi 1">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Galactic Empire</h3>
+                        <div class="movie-meta">
+                            <span>2023</span>
+                            <span class="movie-rating">★ 9.2</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('scifi1')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/0f3460/fff?text=SciFi+2" class="movie-poster" alt="Sci-Fi 2">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Time Paradox</h3>
+                        <div class="movie-meta">
+                            <span>2022</span>
+                            <span class="movie-rating">★ 8.7</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('scifi2')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/0f3460/fff?text=SciFi+3" class="movie-poster" alt="Sci-Fi 3">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Alien Invasion</h3>
+                        <div class="movie-meta">
+                            <span>2023</span>
+                            <span class="movie-rating">★ 8.4</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('scifi3')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/0f3460/fff?text=SciFi+4" class="movie-poster" alt="Sci-Fi 4">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Quantum Realm</h3>
+                        <div class="movie-meta">
+                            <span>2021</span>
+                            <span class="movie-rating">★ 8.1</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('scifi4')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TV SHOW -->
+        <div class="category">
+            <h2 class="category-title">TV SHOW</h2>
+            <div class="movies-row">
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/1e5128/fff?text=TV+Show+1" class="movie-poster" alt="TV Show 1">
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Last Kingdom</h3>
+                        <div class="movie-meta">
+                            <span>2020-2023</span>
+                            <span class="movie-rating">★ 8.8</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('tvshow1')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/1e5128/fff?text=TV+Show+2" class="movie-poster" alt="TV Show 2">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Dark Shadows</h3>
+                        <div class="movie-meta">
+                            <span>2019-2022</span>
+                            <span class="movie-rating">★ 8.5</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('tvshow2')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/1e5128/fff?text=TV+Show+3" class="movie-poster" alt="TV Show 3">
+                    <div class="movie-info">
+                        <h3 class="movie-title">City of Dreams</h3>
+                        <div class="movie-meta">
+                            <span>2021-Present</span>
+                            <span class="movie-rating">★ 8.2</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('tvshow3')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="https://via.placeholder.com/220x330/1e5128/fff?text=TV+Show+4" class="movie-poster" alt="TV Show 4">
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Crown</h3>
+                        <div class="movie-meta">
+                            <span>2016-2023</span>
+                            <span class="movie-rating">★ 8.7</span>
+                        </div>
+                        <div class="play-btn" onclick="openPlayer('tvshow4')">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Video Player -->
+    <div class="video-player" id="video-player">
+        <div class="player-container">
+            <button class="close-player" onclick="closePlayer()">&times;</button>
+            <video id="player" controls>
+                <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Language selector with actual translation
+        document.getElementById('language-select').addEventListener('change', function() {
+            const lang = this.value;
+            const translations = {
+                'en': {
+                    'home': 'Home',
+                    'movies': 'Movies',
+                    'tvshows': 'TV Shows',
+                    'search': 'Search movies, TV shows...',
+                    'popular': 'Popular Movies',
+                    'mystery': 'MYSTERY MOVIE',
+                    'action': 'ACTION MOVIE',
+                    'scifi': 'SCI-FI MOVIE',
+                    'tv': 'TV SHOW'
+                },
+                'fa': {
+                    'home': 'خانه',
+                    'movies': 'فیلم‌ها',
+                    'tvshows': 'سریال‌ها',
+                    'search': 'جستجوی فیلم، سریال...',
+                    'popular': 'فیلم‌های محبوب',
+                    'mystery': 'فیلم معمایی',
+                    'action': 'فیلم اکشن',
+                    'scifi': 'فیلم علمی تخیلی',
+                    'tv': 'سریال'
+                },
+                'de': {
+                    'home': 'Startseite',
+                    'movies': 'Filme',
+                    'tvshows': 'TV-Sendungen',
+                    'search': 'Suche Filme, TV-Sendungen...',
+                    'popular': 'Beliebte Filme',
+                    'mystery': 'MYSTERIE-FILM',
+                    'action': 'ACTIONFILM',
+                    'scifi': 'SCI-FI-FILM',
+                    'tv': 'TV-SHOW'
+                },
+                'es': {
+                    'home': 'Inicio',
+                    'movies': 'Películas',
+                    'tvshows': 'Programas de TV',
+                    'search': 'Buscar películas, programas...',
+                    'popular': 'Películas populares',
+                    'mystery': 'PELÍCULA DE MISTERIO',
+                    'action': 'PELÍCULA DE ACCIÓN',
+                    'scifi': 'PELÍCULA DE CIENCIA FICCIÓN',
+                    'tv': 'PROGRAMA DE TV'
+                },
+                'fr': {
+                    'home': 'Accueil',
+                    'movies': 'Films',
+                    'tvshows': 'Émissions de télé',
+                    'search': 'Rechercher films, émissions...',
+                    'popular': 'Films populaires',
+                    'mystery': 'FILM MYSTÈRE',
+                    'action': 'FILM D\'ACTION',
+                    'scifi': 'FILM DE SCIENCE-FICTION',
+                    'tv': 'ÉMISSION DE TÉLÉ'
+                },
+                'ar': {
+                    'home': 'الرئيسية',
+                    'movies': 'أفلام',
+                    'tvshows': 'برامج تلفزيونية',
+                    'search': 'ابحث عن أفلام، برامج...',
+                    'popular': 'أفلام شائعة',
+                    'mystery': 'فيلم غموض',
+                    'action': 'فيلم أكشن',
+                    'scifi': 'فيلم خيال علمي',
+                    'tv': 'برنامج تلفزيوني'
+                },
+                'zh': {
+                    'home': '首页',
+                    'movies': '电影',
+                    'tvshows': '电视节目',
+                    'search': '搜索电影、电视节目...',
+                    'popular': '热门电影',
+                    'mystery': '悬疑电影',
+                    'action': '动作电影',
+                    'scifi': '科幻电影',
+                    'tv': '电视节目'
+                },
+                'ja': {
+                    'home': 'ホーム',
+                    'movies': '映画',
+                    'tvshows': 'テレビ番組',
+                    'search': '映画、テレビ番組を検索...',
+                    'popular': '人気の映画',
+                    'mystery': 'ミステリー映画',
+                    'action': 'アクション映画',
+                    'scifi': 'SF映画',
+                    'tv': 'テレビ番組'
+                },
+                'ru': {
+                    'home': 'Главная',
+                    'movies': 'Фильмы',
+                    'tvshows': 'ТВ-шоу',
+                    'search': 'Поиск фильмов, ТВ-шоу...',
+                    'popular': 'Популярные фильмы',
+                    'mystery': 'МИСТИЧЕСКИЙ ФИЛЬМ',
+                    'action': 'БОЕВИК',
+                    'scifi': 'НАУЧНАЯ ФАНТАСТИКА',
+                    'tv': 'ТВ-ШОУ'
+                }
+            };
+            
+            // Update all text elements
+            document.querySelectorAll('.nav-links a')[0].textContent = translations[lang]['home'];
+            document.querySelectorAll('.nav-links a')[1].textContent = translations[lang]['movies'];
+            document.querySelectorAll('.nav-links a')[2].textContent = translations[lang]['tvshows'];
+            document.querySelector('.search-box').placeholder = translations[lang]['search'];
+            
+            const categoryTitles = document.querySelectorAll('.category-title');
+            categoryTitles[0].textContent = translations[lang]['popular'];
+            categoryTitles[1].textContent = translations[lang]['mystery'];
+            categoryTitles[2].textContent = translations[lang]['action'];
+            categoryTitles[3].textContent = translations[lang]['scifi'];
+            categoryTitles[4].textContent = translations[lang]['tv'];
+        });
+        
+        // Video player
+        function openPlayer(videoId) {
+            const player = document.getElementById('video-player');
+            player.style.display = 'flex';
+            
+            // In a real app, you would load different videos based on videoId
+            document.getElementById('player').play();
+        }
+        
+        function closePlayer() {
+            const player = document.getElementById('player');
+            player.pause();
+            player.currentTime = 0;
+            document.getElementById('video-player').style.display = 'none';
+        }
+        
+        // Close player when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('video-player')) {
+                closePlayer();
+            }
+        });
+    </script>
+</body>
+</html>

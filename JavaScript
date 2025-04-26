@@ -1,0 +1,5 @@
+document.getElementById('language').addEventListener('change', function() {
+    const selectedLanguage = this.value;
+    // You can add functionality here to change the language of the website
+    console.log('Selected Language:', selectedLanguage);
+});
