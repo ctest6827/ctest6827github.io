@@ -1,56 +1,138 @@
-// منابع ویدیویی (لیست تمام فیلم‌ها و سریال‌ها)
-const videoSources = {
-    // فیلم‌های عمومی
-    'movie1': 'https://drive.google.com/file/d/لینک_فیلم_1/preview',
-    'movie2': 'https://drive.google.com/file/d/لینک_فیلم_2/preview',
-    'movie3': 'https://drive.google.com/file/d/لینک_فیلم_3/preview',
-    'movie4': 'https://drive.google.com/file/d/لینک_فیلم_4/preview',
-    'movie5': 'https://drive.google.com/file/d/لینک_فیلم_5/preview',
-    `https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview`
-    const videoSources = {
-        // فیلم‌های 2024-2025
-        'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview',
-        'conclave2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview',
-        
-        // سایر فیلم‌ها...
-    };
-    const videoSources = {
-        // ... سایر ویدیوها
-        
-        // ویدیوی جدید شما
-        'newMovie2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview',
-        
-        // فیلم قبلی شما
-        'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview'
-    };
-    // فیلم‌های معمایی
-    'mystery1': 'https://drive.google.com/file/d/لینک_معمایی_1/preview',
-    'mystery2': 'https://drive.google.com/file/d/لینک_معمایی_2/preview',
-    
-    // فیلم‌های اکشن
-    'action1': 'https://drive.google.com/file/d/لینک_اکشن_1/preview',
-    'action2': 'https://drive.google.com/file/d/لینک_اکشن_2/preview',
-    
-    // سریال‌ها
-    'tvshow1': 'https://drive.google.com/file/d/لینک_سریال_1/preview',
-    'tvshow2': 'https://drive.google.com/file/d/لینک_سریال_2/preview',
-    
-    // فیلم‌های 2024-2025
-    'movie2024_1': 'https://drive.google.com/file/d/لینک_فیلم_2024/preview',
-    'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview'
+// اطلاعات فیلم‌ها
+const moviesData = {
+    popular: [
+        {
+            id: 'dune2',
+            title: 'Dune: Part Two',
+            year: '2024',
+            rating: '8.7',
+            image: 'https://image.tmdb.org/t/p/w220_and_h330_face/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg',
+            video: 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview'
+        },
+        {
+            id: 'thebatman',
+            title: 'The Batman',
+            year: '2022',
+            rating: '7.9',
+            image: 'https://image.tmdb.org/t/p/w220_and_h330_face/seyWFgGInaLqW7nOZvu0ZC95rtx.jpg',
+            video: ''
+        },
+        {
+            id: 'oppenheimer',
+            title: 'Oppenheimer',
+            year: '2023',
+            rating: '8.4',
+            image: 'https://image.tmdb.org/t/p/w220_and_h330_face/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
+            video: ''
+        },
+        {
+            id: 'joker',
+            title: 'Joker',
+            year: '2019',
+            rating: '8.3',
+            image: 'https://image.tmdb.org/t/p/w220_and_h330_face/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg',
+            video: ''
+        },
+        {
+            id: 'inception',
+            title: 'Inception',
+            year: '2010',
+            rating: '8.8',
+            image: 'https://image.tmdb.org/t/p/w220_and_h330_face/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg',
+            video: ''
+        }
+    ],
+    newReleases: [
+        {
+            id: 'skyforce2025',
+            title: 'Sky Force 2025',
+            year: '2025',
+            rating: '9.0',
+            image: 'https://via.placeholder.com/220x330/555/fff?text=Sky+Force+2025',
+            video: 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview'
+        },
+        {
+            id: 'conclave2024',
+            title: 'Conclave 2024',
+            year: '2024',
+            rating: '8.5',
+            image: 'https://via.placeholder.com/220x330/555/fff?text=Conclave+2024',
+            video: 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview'
+        },
+        {
+            id: 'furiosa',
+            title: 'Furiosa',
+            year: '2024',
+            rating: '8.1',
+            image: 'https://image.tmdb.org/t/p/w220_and_h330_face/iADOJ8ZymD2LvDS0p5PZ4z6V5EH.jpg',
+            video: ''
+        }
+    ]
 };
+
+// تابع برای ایجاد کارت فیلم
+function createMovieCard(movie) {
+    const card = document.createElement('div');
+    card.className = 'movie-card';
+    card.innerHTML = `
+        <img src="${movie.image}" class="movie-poster" alt="${movie.title}">
+        <div class="movie-info">
+            <h3 class="movie-title">${movie.title}</h3>
+            <div class="movie-meta">
+                <span>${movie.year}</span>
+                <span class="movie-rating">★ ${movie.rating}</span>
+            </div>
+            <div class="play-btn" onclick="openPlayer('${movie.id}')">
+                <i class="fas fa-play"></i>
+            </div>
+        </div>
+    `;
+    return card;
+}
+
+// تابع برای نمایش فیلم‌ها
+function displayMovies() {
+    const popularSection = document.getElementById('popular-movies');
+    const newReleasesSection = document.getElementById('new-releases');
+    
+    // پاکسازی بخش‌ها
+    popularSection.innerHTML = '';
+    newReleasesSection.innerHTML = '';
+    
+    // اضافه کردن فیلم‌های پرطرفدار
+    moviesData.popular.forEach(movie => {
+        popularSection.appendChild(createMovieCard(movie));
+    });
+    
+    // اضافه کردن فیلم‌های جدید
+    moviesData.newReleases.forEach(movie => {
+        newReleasesSection.appendChild(createMovieCard(movie));
+    });
+}
 
 // تابع پخش ویدیو
 function openPlayer(videoId) {
     const playerElement = document.getElementById('video-player');
     const videoElement = document.getElementById('player');
     
-    if(videoSources[videoId]) {
-        videoElement.src = videoSources[videoId];
+    // پیدا کردن ویدیو در داده‌ها
+    let videoUrl = '';
+    moviesData.popular.concat(moviesData.newReleases).forEach(movie => {
+        if (movie.id === videoId && movie.video) {
+            videoUrl = movie.video;
+        }
+    });
+    
+    if(videoUrl) {
+        videoElement.src = videoUrl + '?autoplay=1&mute=1';
         playerElement.style.display = 'flex';
+        
+        videoElement.onerror = function() {
+            alert('Error loading video!\n\nPlease:\n1. Check Google Drive sharing settings\n2. Check your internet connection');
+            closePlayer();
+        };
     } else {
-        alert('ویدیو مورد نظر در دسترس نیست!');
-        console.error('ویدیو با شناسه ' + videoId + ' یافت نشد');
+        alert('Video not available!');
     }
 }
 
@@ -68,13 +150,13 @@ document.getElementById('video-player').addEventListener('click', function(e) {
     }
 });
 
-// تغییر حالت نوار ناوبری هنگام اسکرول
+// اسکرول نوار ناوبری
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     navbar.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// سیستم تغییر زبان
+// تغییر زبان
 document.getElementById('language-select').addEventListener('change', function() {
     const lang = this.value;
     const translations = {
@@ -84,10 +166,6 @@ document.getElementById('language-select').addEventListener('change', function()
             'tvshows': 'TV Shows',
             'search': 'Search movies, TV shows...',
             'popular': 'Popular Movies',
-            'mystery': 'MYSTERY MOVIE',
-            'action': 'ACTION MOVIE',
-            'scifi': 'SCI-FI MOVIE',
-            'tv': 'TV SHOW',
             'newreleases': 'New Releases (2024-2025)'
         },
         'fa': {
@@ -96,61 +174,67 @@ document.getElementById('language-select').addEventListener('change', function()
             'tvshows': 'سریال‌ها',
             'search': 'جستجوی فیلم، سریال...',
             'popular': 'فیلم‌های محبوب',
-            'mystery': 'فیلم معمایی',
-            'action': 'فیلم اکشن',
-            'scifi': 'فیلم علمی تخیلی',
-            'tv': 'سریال',
-            'newreleases': 'تازه‌های 2024-2025'
+            'newreleases': 'تازه‌ها (2024-2025)'
         }
-        // می‌توانید زبان‌های دیگر را اضافه کنید
     };
     
     if(translations[lang]) {
-        // ترجمه منوها
-        // منابع ویدیویی
-const videoSources = {
-    // ... سایر ویدیوها
-    
-    // فیلم‌های 2024-2025
-    'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview',
-    'conclave2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview',
-    const videoSources = {
-        // سایر فیلم‌ها...
-        'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview',
-        'conclave2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview'
-    };
-    const videoSources = {
-        // فیلم‌های عمومی
-        'movie1': 'https://drive.google.com/file/d/لینک_فیلم_1/preview',
-        'movie2': 'https://drive.google.com/file/d/لینک_فیلم_2/preview',
-        'movie3': 'https://drive.google.com/file/d/لینک_فیلم_3/preview',
-        'movie4': 'https://drive.google.com/file/d/لینک_فیلم_4/preview',
-        'movie5': 'https://drive.google.com/file/d/لینک_فیلم_5/preview',
-        
-        // فیلم‌های 2024-2025
-        'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview',
-        'conclave2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview'
-    };
-    // ... سایر منابع
-};
         document.querySelectorAll('.nav-links a')[0].textContent = translations[lang]['home'];
         document.querySelectorAll('.nav-links a')[1].textContent = translations[lang]['movies'];
         document.querySelectorAll('.nav-links a')[2].textContent = translations[lang]['tvshows'];
-        
-        // ترجمه placeholder جستجو
         document.querySelector('.search-box').placeholder = translations[lang]['search'];
         
-        // ترجمه عنوان دسته‌بندی‌ها
         const categoryTitles = document.querySelectorAll('.category-title');
-        categoryTitles.forEach((title, index) => {
-            if(index === 0) title.textContent = translations[lang]['popular'];
-            if(index === 1) title.textContent = translations[lang]['newreleases'];
-            // برای دسته‌بندی‌های دیگر...
-        });
+        categoryTitles[0].textContent = translations[lang]['popular'];
+        if(categoryTitles[1]) {
+            categoryTitles[1].textContent = translations[lang]['newreleases'];
+        }
     }
 });
 
-// تنظیمات اولیه
-document.addEventListener('DOMContentLoaded', function() {
-    // کدهای دیگری که نیاز به اجرا پس از لود صفحه دارند
+// جستجوی فیلم‌ها
+document.querySelector('.search-box').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    
+    if(searchTerm.length > 2) {
+        const allMovies = [...moviesData.popular, ...moviesData.newReleases];
+        const filteredMovies = allMovies.filter(movie => 
+            movie.title.toLowerCase().includes(searchTerm)
+        );
+        
+        // نمایش نتایج جستجو
+        showSearchResults(filteredMovies);
+    } else {
+        // نمایش معمولی فیلم‌ها
+        displayMovies();
+    }
+});
+
+function showSearchResults(movies) {
+    const popularSection = document.getElementById('popular-movies');
+    const newReleasesSection = document.getElementById('new-releases');
+    
+    // پاکسازی بخش‌ها
+    popularSection.innerHTML = '';
+    newReleasesSection.innerHTML = '';
+    
+    // نمایش نتایج در بخش فیلم‌های پرطرفدار
+    movies.forEach(movie => {
+        popularSection.appendChild(createMovieCard(movie));
+    });
+    
+    // مخفی کردن عنوان بخش جدیدترین‌ها اگر جستجو انجام شده
+    document.querySelector('.category:last-child').style.display = 
+        movies.length ? 'none' : 'block';
+}
+
+// نمایش فیلم‌ها هنگام بارگذاری صفحه
+window.addEventListener('DOMContentLoaded', function() {
+    displayMovies();
+    
+    // اضافه کردن رویداد برای آواتار کاربر
+    document.querySelector('.user-avatar').addEventListener('click', function() {
+        alert('User menu clicked!');
+        // اینجا می‌توانید منوی کاربر را پیاده‌سازی کنید
+    });
 });
