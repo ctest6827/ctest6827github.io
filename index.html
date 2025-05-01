@@ -416,105 +416,16 @@
         <!-- Popular Movies -->
         <div class="category">
             <h2 class="category-title">Popular Movies</h2>
-            <div class="movies-row">
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/333/fff?text=Movie+1" class="movie-poster" alt="Movie 1">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Last Adventure</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <span class="movie-rating">★ 8.5</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('movie1')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/333/fff?text=Movie+2" class="movie-poster" alt="Movie 2">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Midnight Run</h3>
-                        <div class="movie-meta">
-                            <span>2022</span>
-                            <span class="movie-rating">★ 7.9</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('movie2')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/333/fff?text=Movie+3" class="movie-poster" alt="Movie 3">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Space Odyssey</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <span class="movie-rating">★ 9.1</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('movie3')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/333/fff?text=Movie+4" class="movie-poster" alt="Movie 4">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Dark Secrets</h3>
-                        <div class="movie-meta">
-                            <span>2021</span>
-                            <span class="movie-rating">★ 8.2</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('movie4')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/333/fff?text=Movie+5" class="movie-poster" alt="Movie 5">
-                    <div class="movie-info">
-                        <h3 class="movie-title">City Lights</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <span class="movie-rating">★ 7.5</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('movie5')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
+            <div class="movies-row" id="popular-movies">
+                <!-- Movies will be added here by JavaScript -->
             </div>
         </div>
         
         <!-- New 2024-2025 Movies -->
         <div class="category">
             <h2 class="category-title">New Releases (2024-2025)</h2>
-            <div class="movies-row">
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/555/fff?text=Sky+Force+2025" class="movie-poster" alt="Sky Force 2025">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Sky Force 2025</h3>
-                        <div class="movie-meta">
-                            <span>2025</span>
-                            <span class="movie-rating">★ 9.0</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('skyforce2025')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/555/fff?text=Conclave+2024" class="movie-poster" alt="Conclave 2024">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Conclave 2024</h3>
-                        <div class="movie-meta">
-                            <span>2024</span>
-                            <span class="movie-rating">★ 8.5</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('conclave2024')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
+            <div class="movies-row" id="new-releases">
+                <!-- Movies will be added here by JavaScript -->
             </div>
         </div>
     </div>
@@ -528,35 +439,148 @@
     </div>
     
     <script>
+        // اطلاعات فیلم‌ها
+        const moviesData = {
+            popular: [
+                {
+                    id: 'dune2',
+                    title: 'Dune: Part Two',
+                    year: '2024',
+                    rating: '8.7',
+                    image: 'https://image.tmdb.org/t/p/w220_and_h330_face/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg',
+                    video: 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview'
+                },
+                {
+                    id: 'thebatman',
+                    title: 'The Batman',
+                    year: '2022',
+                    rating: '7.9',
+                    image: 'https://image.tmdb.org/t/p/w220_and_h330_face/seyWFgGInaLqW7nOZvu0ZC95rtx.jpg',
+                    video: ''
+                },
+                {
+                    id: 'oppenheimer',
+                    title: 'Oppenheimer',
+                    year: '2023',
+                    rating: '8.4',
+                    image: 'https://image.tmdb.org/t/p/w220_and_h330_face/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
+                    video: ''
+                },
+                {
+                    id: 'joker',
+                    title: 'Joker',
+                    year: '2019',
+                    rating: '8.3',
+                    image: 'https://image.tmdb.org/t/p/w220_and_h330_face/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg',
+                    video: ''
+                },
+                {
+                    id: 'inception',
+                    title: 'Inception',
+                    year: '2010',
+                    rating: '8.8',
+                    image: 'https://image.tmdb.org/t/p/w220_and_h330_face/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg',
+                    video: ''
+                }
+            ],
+            newReleases: [
+                {
+                    id: 'skyforce2025',
+                    title: 'Sky Force 2025',
+                    year: '2025',
+                    rating: '9.0',
+                    image: 'https://via.placeholder.com/220x330/555/fff?text=Sky+Force+2025',
+                    video: 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview'
+                },
+                {
+                    id: 'conclave2024',
+                    title: 'Conclave 2024',
+                    year: '2024',
+                    rating: '8.5',
+                    image: 'https://via.placeholder.com/220x330/555/fff?text=Conclave+2024',
+                    video: 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview'
+                },
+                {
+                    id: 'furiosa',
+                    title: 'Furiosa',
+                    year: '2024',
+                    rating: '8.1',
+                    image: 'https://image.tmdb.org/t/p/w220_and_h330_face/iADOJ8ZymD2LvDS0p5PZ4z6V5EH.jpg',
+                    video: ''
+                }
+            ]
+        };
+
+        // تابع برای ایجاد کارت فیلم
+        function createMovieCard(movie) {
+            const card = document.createElement('div');
+            card.className = 'movie-card';
+            card.innerHTML = `
+                <img src="${movie.image}" class="movie-poster" alt="${movie.title}">
+                <div class="movie-info">
+                    <h3 class="movie-title">${movie.title}</h3>
+                    <div class="movie-meta">
+                        <span>${movie.year}</span>
+                        <span class="movie-rating">★ ${movie.rating}</span>
+                    </div>
+                    <div class="play-btn" onclick="openPlayer('${movie.id}')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        // تابع برای نمایش فیلم‌ها
+        function displayMovies() {
+            const popularSection = document.getElementById('popular-movies');
+            const newReleasesSection = document.getElementById('new-releases');
+            
+            // پاکسازی بخش‌ها
+            popularSection.innerHTML = '';
+            newReleasesSection.innerHTML = '';
+            
+            // اضافه کردن فیلم‌های پرطرفدار
+            moviesData.popular.forEach(movie => {
+                popularSection.appendChild(createMovieCard(movie));
+            });
+            
+            // اضافه کردن فیلم‌های جدید
+            moviesData.newReleases.forEach(movie => {
+                newReleasesSection.appendChild(createMovieCard(movie));
+            });
+        }
+
         // منابع ویدیویی
         const videoSources = {
-            // فیلم‌های عمومی (می‌توانید خالی بگذارید یا حذف کنید)
-            'movie1': '',
-            'movie2': '',
-            'movie3': '',
-            'movie4': '',
-            'movie5': '',
-            
-            // فیلم‌های 2024-2025 با لینک‌های شما
+            'dune2': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview',
             'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview',
             'conclave2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview'
         };
 
-        // تابع پخش ویدیو با مدیریت خطا
+        // تابع پخش ویدیو
         function openPlayer(videoId) {
             const playerElement = document.getElementById('video-player');
             const videoElement = document.getElementById('player');
             
-            if(videoSources[videoId]) {
-                videoElement.src = videoSources[videoId] + '?autoplay=1&mute=1';
+            // پیدا کردن ویدیو در داده‌ها
+            let videoUrl = '';
+            moviesData.popular.concat(moviesData.newReleases).forEach(movie => {
+                if (movie.id === videoId && movie.video) {
+                    videoUrl = movie.video;
+                }
+            });
+            
+            if(videoUrl) {
+                videoElement.src = videoUrl + '?autoplay=1&mute=1';
                 playerElement.style.display = 'flex';
                 
                 videoElement.onerror = function() {
-                    alert('خطا در بارگذاری ویدیو!\n\nلطفاً:\n1. تنظیمات اشتراک‌گذاری فایل در Google Drive را بررسی کنید\n2. اتصال اینترنت خود را چک کنید');
+                    alert('Error loading video!\n\nPlease:\n1. Check Google Drive sharing settings\n2. Check your internet connection');
                     closePlayer();
                 };
             } else {
-                alert('ویدیو مورد نظر در دسترس نیست!');
+                alert('Video not available!');
             }
         }
 
@@ -615,6 +639,9 @@
                 }
             }
         });
+
+        // نمایش فیلم‌ها هنگام بارگذاری صفحه
+        window.addEventListener('DOMContentLoaded', displayMovies);
     </script>
 </body>
 </html>
