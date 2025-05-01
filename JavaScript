@@ -1,5 +1,156 @@
-document.getElementById('language').addEventListener('change', function() {
-    const selectedLanguage = this.value;
-    // You can add functionality here to change the language of the website
-    console.log('Selected Language:', selectedLanguage);
+// منابع ویدیویی (لیست تمام فیلم‌ها و سریال‌ها)
+const videoSources = {
+    // فیلم‌های عمومی
+    'movie1': 'https://drive.google.com/file/d/لینک_فیلم_1/preview',
+    'movie2': 'https://drive.google.com/file/d/لینک_فیلم_2/preview',
+    'movie3': 'https://drive.google.com/file/d/لینک_فیلم_3/preview',
+    'movie4': 'https://drive.google.com/file/d/لینک_فیلم_4/preview',
+    'movie5': 'https://drive.google.com/file/d/لینک_فیلم_5/preview',
+    `https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview`
+    const videoSources = {
+        // فیلم‌های 2024-2025
+        'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview',
+        'conclave2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview',
+        
+        // سایر فیلم‌ها...
+    };
+    const videoSources = {
+        // ... سایر ویدیوها
+        
+        // ویدیوی جدید شما
+        'newMovie2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview',
+        
+        // فیلم قبلی شما
+        'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview'
+    };
+    // فیلم‌های معمایی
+    'mystery1': 'https://drive.google.com/file/d/لینک_معمایی_1/preview',
+    'mystery2': 'https://drive.google.com/file/d/لینک_معمایی_2/preview',
+    
+    // فیلم‌های اکشن
+    'action1': 'https://drive.google.com/file/d/لینک_اکشن_1/preview',
+    'action2': 'https://drive.google.com/file/d/لینک_اکشن_2/preview',
+    
+    // سریال‌ها
+    'tvshow1': 'https://drive.google.com/file/d/لینک_سریال_1/preview',
+    'tvshow2': 'https://drive.google.com/file/d/لینک_سریال_2/preview',
+    
+    // فیلم‌های 2024-2025
+    'movie2024_1': 'https://drive.google.com/file/d/لینک_فیلم_2024/preview',
+    'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview'
+};
+
+// تابع پخش ویدیو
+function openPlayer(videoId) {
+    const playerElement = document.getElementById('video-player');
+    const videoElement = document.getElementById('player');
+    
+    if(videoSources[videoId]) {
+        videoElement.src = videoSources[videoId];
+        playerElement.style.display = 'flex';
+    } else {
+        alert('ویدیو مورد نظر در دسترس نیست!');
+        console.error('ویدیو با شناسه ' + videoId + ' یافت نشد');
+    }
+}
+
+// تابع بستن پخش کننده
+function closePlayer() {
+    const videoElement = document.getElementById('player');
+    videoElement.src = '';
+    document.getElementById('video-player').style.display = 'none';
+}
+
+// بستن پخش کننده با کلیک خارج از آن
+document.getElementById('video-player').addEventListener('click', function(e) {
+    if(e.target === this) {
+        closePlayer();
+    }
+});
+
+// تغییر حالت نوار ناوبری هنگام اسکرول
+window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// سیستم تغییر زبان
+document.getElementById('language-select').addEventListener('change', function() {
+    const lang = this.value;
+    const translations = {
+        'en': {
+            'home': 'Home',
+            'movies': 'Movies',
+            'tvshows': 'TV Shows',
+            'search': 'Search movies, TV shows...',
+            'popular': 'Popular Movies',
+            'mystery': 'MYSTERY MOVIE',
+            'action': 'ACTION MOVIE',
+            'scifi': 'SCI-FI MOVIE',
+            'tv': 'TV SHOW',
+            'newreleases': 'New Releases (2024-2025)'
+        },
+        'fa': {
+            'home': 'خانه',
+            'movies': 'فیلم‌ها',
+            'tvshows': 'سریال‌ها',
+            'search': 'جستجوی فیلم، سریال...',
+            'popular': 'فیلم‌های محبوب',
+            'mystery': 'فیلم معمایی',
+            'action': 'فیلم اکشن',
+            'scifi': 'فیلم علمی تخیلی',
+            'tv': 'سریال',
+            'newreleases': 'تازه‌های 2024-2025'
+        }
+        // می‌توانید زبان‌های دیگر را اضافه کنید
+    };
+    
+    if(translations[lang]) {
+        // ترجمه منوها
+        // منابع ویدیویی
+const videoSources = {
+    // ... سایر ویدیوها
+    
+    // فیلم‌های 2024-2025
+    'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview',
+    'conclave2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview',
+    const videoSources = {
+        // سایر فیلم‌ها...
+        'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview',
+        'conclave2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview'
+    };
+    const videoSources = {
+        // فیلم‌های عمومی
+        'movie1': 'https://drive.google.com/file/d/لینک_فیلم_1/preview',
+        'movie2': 'https://drive.google.com/file/d/لینک_فیلم_2/preview',
+        'movie3': 'https://drive.google.com/file/d/لینک_فیلم_3/preview',
+        'movie4': 'https://drive.google.com/file/d/لینک_فیلم_4/preview',
+        'movie5': 'https://drive.google.com/file/d/لینک_فیلم_5/preview',
+        
+        // فیلم‌های 2024-2025
+        'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview',
+        'conclave2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview'
+    };
+    // ... سایر منابع
+};
+        document.querySelectorAll('.nav-links a')[0].textContent = translations[lang]['home'];
+        document.querySelectorAll('.nav-links a')[1].textContent = translations[lang]['movies'];
+        document.querySelectorAll('.nav-links a')[2].textContent = translations[lang]['tvshows'];
+        
+        // ترجمه placeholder جستجو
+        document.querySelector('.search-box').placeholder = translations[lang]['search'];
+        
+        // ترجمه عنوان دسته‌بندی‌ها
+        const categoryTitles = document.querySelectorAll('.category-title');
+        categoryTitles.forEach((title, index) => {
+            if(index === 0) title.textContent = translations[lang]['popular'];
+            if(index === 1) title.textContent = translations[lang]['newreleases'];
+            // برای دسته‌بندی‌های دیگر...
+        });
+    }
+});
+
+// تنظیمات اولیه
+document.addEventListener('DOMContentLoaded', function() {
+    // کدهای دیگری که نیاز به اجرا پس از لود صفحه دارند
 });
