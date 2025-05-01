@@ -105,3 +105,40 @@ nav ul li a:hover {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
+.player-container iframe {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
+}
+
+@media (max-width: 768px) {
+    .player-container iframe {
+        height: 300px;
+    }
+
+    .player-container iframe {
+        width: 100%;
+        height: 500px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+        .player-container iframe {
+            height: 300px;
+            .player-container iframe {
+                width: 100%;
+                height: 500px;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
+            }
+            
+            @media (max-width: 768px) {
+                .player-container iframe {
+                    height: 300px;
+                }
+            }
+        }
+    }
+}
