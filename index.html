@@ -340,8 +340,9 @@
             cursor: pointer;
         }
         
-        video {
+        #player {
             width: 100%;
+            height: 500px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
         }
@@ -368,6 +369,10 @@
             .movie-card {
                 min-width: 180px;
                 height: 270px;
+            }
+            
+            #player {
+                height: 300px;
             }
         }
     </style>
@@ -400,12 +405,7 @@
             </div>
         </div>
     </nav>
-    <div class="video-container">
-  <h2>فیلم آموزشی</h2>
-  <video width="100%" controls>
-    <source src="نام-فیلم.mp4" type="video/mp4">
-  </video>
-</div>
+    
     <!-- Main Content -->
     <div class="main-content">
         <div class="search-section">
@@ -485,235 +485,32 @@
             </div>
         </div>
         
-        <!-- MYSTERY MOVIE -->
+        <!-- New 2024-2025 Movies -->
         <div class="category">
-            <h2 class="category-title">MYSTERY MOVIE</h2>
+            <h2 class="category-title">New Releases (2024-2025)</h2>
             <div class="movies-row">
                 <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/1a1a2e/fff?text=Mystery+1" class="movie-poster" alt="Mystery 1">
+                    <img src="https://via.placeholder.com/220x330/555/fff?text=Sky+Force+2025" class="movie-poster" alt="Sky Force 2025">
                     <div class="movie-info">
-                        <h3 class="movie-title">The Hidden Truth</h3>
+                        <h3 class="movie-title">Sky Force 2025</h3>
                         <div class="movie-meta">
-                            <span>2022</span>
-                            <span class="movie-rating">★ 8.7</span>
+                            <span>2025</span>
+                            <span class="movie-rating">★ 9.0</span>
                         </div>
-                        <div class="play-btn" onclick="openPlayer('mystery1')">
+                        <div class="play-btn" onclick="openPlayer('skyforce2025')">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
                 </div>
                 <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/1a1a2e/fff?text=Mystery+2" class="movie-poster" alt="Mystery 2">
+                    <img src="https://via.placeholder.com/220x330/555/fff?text=Conclave+2024" class="movie-poster" alt="Conclave 2024">
                     <div class="movie-info">
-                        <h3 class="movie-title">Vanished</h3>
+                        <h3 class="movie-title">Conclave 2024</h3>
                         <div class="movie-meta">
-                            <span>2023</span>
-                            <span class="movie-rating">★ 8.1</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('mystery2')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/1a1a2e/fff?text=Mystery+3" class="movie-poster" alt="Mystery 3">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Silent Witness</h3>
-                        <div class="movie-meta">
-                            <span>2021</span>
-                            <span class="movie-rating">★ 7.8</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('mystery3')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/1a1a2e/fff?text=Mystery+4" class="movie-poster" alt="Mystery 4">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Behind Closed Doors</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <span class="movie-rating">★ 8.4</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('mystery4')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- ACTION MOVIE -->
-        <div class="category">
-            <h2 class="category-title">ACTION MOVIE</h2>
-            <div class="movies-row">
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/b21f1f/fff?text=Action+1" class="movie-poster" alt="Action 1">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Extreme Force</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <span class="movie-rating">★ 8.9</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('action1')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/b21f1f/fff?text=Action+2" class="movie-poster" alt="Action 2">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Rogue Agent</h3>
-                        <div class="movie-meta">
-                            <span>2022</span>
-                            <span class="movie-rating">★ 7.6</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('action2')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/b21f1f/fff?text=Action+3" class="movie-poster" alt="Action 3">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Final Strike</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <span class="movie-rating">★ 8.3</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('action3')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/b21f1f/fff?text=Action+4" class="movie-poster" alt="Action 4">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Urban Warfare</h3>
-                        <div class="movie-meta">
-                            <span>2021</span>
-                            <span class="movie-rating">★ 7.9</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('action4')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SCI-FI MOVIE -->
-        <div class="category">
-            <h2 class="category-title">SCI-FI MOVIE</h2>
-            <div class="movies-row">
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/0f3460/fff?text=SciFi+1" class="movie-poster" alt="Sci-Fi 1">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Galactic Empire</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <span class="movie-rating">★ 9.2</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('scifi1')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/0f3460/fff?text=SciFi+2" class="movie-poster" alt="Sci-Fi 2">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Time Paradox</h3>
-                        <div class="movie-meta">
-                            <span>2022</span>
-                            <span class="movie-rating">★ 8.7</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('scifi2')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/0f3460/fff?text=SciFi+3" class="movie-poster" alt="Sci-Fi 3">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Alien Invasion</h3>
-                        <div class="movie-meta">
-                            <span>2023</span>
-                            <span class="movie-rating">★ 8.4</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('scifi3')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/0f3460/fff?text=SciFi+4" class="movie-poster" alt="Sci-Fi 4">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Quantum Realm</h3>
-                        <div class="movie-meta">
-                            <span>2021</span>
-                            <span class="movie-rating">★ 8.1</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('scifi4')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- TV SHOW -->
-        <div class="category">
-            <h2 class="category-title">TV SHOW</h2>
-            <div class="movies-row">
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/1e5128/fff?text=TV+Show+1" class="movie-poster" alt="TV Show 1">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Last Kingdom</h3>
-                        <div class="movie-meta">
-                            <span>2020-2023</span>
-                            <span class="movie-rating">★ 8.8</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('tvshow1')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/1e5128/fff?text=TV+Show+2" class="movie-poster" alt="TV Show 2">
-                    <div class="movie-info">
-                        <h3 class="movie-title">Dark Shadows</h3>
-                        <div class="movie-meta">
-                            <span>2019-2022</span>
+                            <span>2024</span>
                             <span class="movie-rating">★ 8.5</span>
                         </div>
-                        <div class="play-btn" onclick="openPlayer('tvshow2')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/1e5128/fff?text=TV+Show+3" class="movie-poster" alt="TV Show 3">
-                    <div class="movie-info">
-                        <h3 class="movie-title">City of Dreams</h3>
-                        <div class="movie-meta">
-                            <span>2021-Present</span>
-                            <span class="movie-rating">★ 8.2</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('tvshow3')">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/220x330/1e5128/fff?text=TV+Show+4" class="movie-poster" alt="TV Show 4">
-                    <div class="movie-info">
-                        <h3 class="movie-title">The Crown</h3>
-                        <div class="movie-meta">
-                            <span>2016-2023</span>
-                            <span class="movie-rating">★ 8.7</span>
-                        </div>
-                        <div class="play-btn" onclick="openPlayer('tvshow4')">
+                        <div class="play-btn" onclick="openPlayer('conclave2024')">
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
@@ -726,25 +523,64 @@
     <div class="video-player" id="video-player">
         <div class="player-container">
             <button class="close-player" onclick="closePlayer()">&times;</button>
-            <video id="player" controls>
-                <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <iframe id="player" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
     
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+        // منابع ویدیویی
+        const videoSources = {
+            // فیلم‌های عمومی (می‌توانید خالی بگذارید یا حذف کنید)
+            'movie1': '',
+            'movie2': '',
+            'movie3': '',
+            'movie4': '',
+            'movie5': '',
+            
+            // فیلم‌های 2024-2025 با لینک‌های شما
+            'skyforce2025': 'https://drive.google.com/file/d/1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA/preview',
+            'conclave2024': 'https://drive.google.com/file/d/1m4T7boVSZa5lxRZZh51n22FlP5_K3uwZ/preview'
+        };
+
+        // تابع پخش ویدیو با مدیریت خطا
+        function openPlayer(videoId) {
+            const playerElement = document.getElementById('video-player');
+            const videoElement = document.getElementById('player');
+            
+            if(videoSources[videoId]) {
+                videoElement.src = videoSources[videoId] + '?autoplay=1&mute=1';
+                playerElement.style.display = 'flex';
+                
+                videoElement.onerror = function() {
+                    alert('خطا در بارگذاری ویدیو!\n\nلطفاً:\n1. تنظیمات اشتراک‌گذاری فایل در Google Drive را بررسی کنید\n2. اتصال اینترنت خود را چک کنید');
+                    closePlayer();
+                };
             } else {
-                navbar.classList.remove('scrolled');
+                alert('ویدیو مورد نظر در دسترس نیست!');
+            }
+        }
+
+        // تابع بستن پخش کننده
+        function closePlayer() {
+            const videoElement = document.getElementById('player');
+            videoElement.src = '';
+            document.getElementById('video-player').style.display = 'none';
+        }
+
+        // بستن پخش کننده با کلیک خارج از آن
+        document.getElementById('video-player').addEventListener('click', function(e) {
+            if(e.target === this) {
+                closePlayer();
             }
         });
-        
-        // Language selector with actual translation
+
+        // اسکرول نوار ناوبری
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // تغییر زبان
         document.getElementById('language-select').addEventListener('change', function() {
             const lang = this.value;
             const translations = {
@@ -754,10 +590,7 @@
                     'tvshows': 'TV Shows',
                     'search': 'Search movies, TV shows...',
                     'popular': 'Popular Movies',
-                    'mystery': 'MYSTERY MOVIE',
-                    'action': 'ACTION MOVIE',
-                    'scifi': 'SCI-FI MOVIE',
-                    'tv': 'TV SHOW'
+                    'newreleases': 'New Releases (2024-2025)'
                 },
                 'fa': {
                     'home': 'خانه',
@@ -765,130 +598,23 @@
                     'tvshows': 'سریال‌ها',
                     'search': 'جستجوی فیلم، سریال...',
                     'popular': 'فیلم‌های محبوب',
-                    'mystery': 'فیلم معمایی',
-                    'action': 'فیلم اکشن',
-                    'scifi': 'فیلم علمی تخیلی',
-                    'tv': 'سریال'
-                },
-                'de': {
-                    'home': 'Startseite',
-                    'movies': 'Filme',
-                    'tvshows': 'TV-Sendungen',
-                    'search': 'Suche Filme, TV-Sendungen...',
-                    'popular': 'Beliebte Filme',
-                    'mystery': 'MYSTERIE-FILM',
-                    'action': 'ACTIONFILM',
-                    'scifi': 'SCI-FI-FILM',
-                    'tv': 'TV-SHOW'
-                },
-                'es': {
-                    'home': 'Inicio',
-                    'movies': 'Películas',
-                    'tvshows': 'Programas de TV',
-                    'search': 'Buscar películas, programas...',
-                    'popular': 'Películas populares',
-                    'mystery': 'PELÍCULA DE MISTERIO',
-                    'action': 'PELÍCULA DE ACCIÓN',
-                    'scifi': 'PELÍCULA DE CIENCIA FICCIÓN',
-                    'tv': 'PROGRAMA DE TV'
-                },
-                'fr': {
-                    'home': 'Accueil',
-                    'movies': 'Films',
-                    'tvshows': 'Émissions de télé',
-                    'search': 'Rechercher films, émissions...',
-                    'popular': 'Films populaires',
-                    'mystery': 'FILM MYSTÈRE',
-                    'action': 'FILM D\'ACTION',
-                    'scifi': 'FILM DE SCIENCE-FICTION',
-                    'tv': 'ÉMISSION DE TÉLÉ'
-                },
-                'ar': {
-                    'home': 'الرئيسية',
-                    'movies': 'أفلام',
-                    'tvshows': 'برامج تلفزيونية',
-                    'search': 'ابحث عن أفلام، برامج...',
-                    'popular': 'أفلام شائعة',
-                    'mystery': 'فيلم غموض',
-                    'action': 'فيلم أكشن',
-                    'scifi': 'فيلم خيال علمي',
-                    'tv': 'برنامج تلفزيوني'
-                },
-                'zh': {
-                    'home': '首页',
-                    'movies': '电影',
-                    'tvshows': '电视节目',
-                    'search': '搜索电影、电视节目...',
-                    'popular': '热门电影',
-                    'mystery': '悬疑电影',
-                    'action': '动作电影',
-                    'scifi': '科幻电影',
-                    'tv': '电视节目'
-                },
-                'ja': {
-                    'home': 'ホーム',
-                    'movies': '映画',
-                    'tvshows': 'テレビ番組',
-                    'search': '映画、テレビ番組を検索...',
-                    'popular': '人気の映画',
-                    'mystery': 'ミステリー映画',
-                    'action': 'アクション映画',
-                    'scifi': 'SF映画',
-                    'tv': 'テレビ番組'
-                },
-                'ru': {
-                    'home': 'Главная',
-                    'movies': 'Фильмы',
-                    'tvshows': 'ТВ-шоу',
-                    'search': 'Поиск фильмов, ТВ-шоу...',
-                    'popular': 'Популярные фильмы',
-                    'mystery': 'МИСТИЧЕСКИЙ ФИЛЬМ',
-                    'action': 'БОЕВИК',
-                    'scifi': 'НАУЧНАЯ ФАНТАСТИКА',
-                    'tv': 'ТВ-ШОУ'
+                    'newreleases': 'تازه‌ها (2024-2025)'
                 }
             };
             
-            // Update all text elements
-            document.querySelectorAll('.nav-links a')[0].textContent = translations[lang]['home'];
-            document.querySelectorAll('.nav-links a')[1].textContent = translations[lang]['movies'];
-            document.querySelectorAll('.nav-links a')[2].textContent = translations[lang]['tvshows'];
-            document.querySelector('.search-box').placeholder = translations[lang]['search'];
-            
-            const categoryTitles = document.querySelectorAll('.category-title');
-            categoryTitles[0].textContent = translations[lang]['popular'];
-            categoryTitles[1].textContent = translations[lang]['mystery'];
-            categoryTitles[2].textContent = translations[lang]['action'];
-            categoryTitles[3].textContent = translations[lang]['scifi'];
-            categoryTitles[4].textContent = translations[lang]['tv'];
-        });
-        
-        // Video player
-        function openPlayer(videoId) {
-            const player = document.getElementById('video-player');
-            player.style.display = 'flex';
-            
-            // In a real app, you would load different videos based on videoId
-            document.getElementById('player').play();
-        }
-        
-        function closePlayer() {
-            const player = document.getElementById('player');
-            player.pause();
-            player.currentTime = 0;
-            document.getElementById('video-player').style.display = 'none';
-        }
-        
-        // Close player when clicking outside
-        window.addEventListener('click', function(event) {
-            if (event.target === document.getElementById('video-player')) {
-                closePlayer();
+            if(translations[lang]) {
+                document.querySelectorAll('.nav-links a')[0].textContent = translations[lang]['home'];
+                document.querySelectorAll('.nav-links a')[1].textContent = translations[lang]['movies'];
+                document.querySelectorAll('.nav-links a')[2].textContent = translations[lang]['tvshows'];
+                document.querySelector('.search-box').placeholder = translations[lang]['search'];
+                
+                const categoryTitles = document.querySelectorAll('.category-title');
+                categoryTitles[0].textContent = translations[lang]['popular'];
+                if(categoryTitles[1]) {
+                    categoryTitles[1].textContent = translations[lang]['newreleases'];
+                }
             }
         });
     </script>
-       <video width="640" height="360" controls>
-      <source src="https://drive.google.com/uc?export=download&id=1PxTuc5LhpdESE-mDkb2Kp2K9EJOz_sxA" type="video/mp4">
-      مرورگر شما از پخش این ویدیو پشتیبانی نمی‌کند.
-    </video>
 </body>
 </html>
